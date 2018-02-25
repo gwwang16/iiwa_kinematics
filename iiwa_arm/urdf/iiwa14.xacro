@@ -36,7 +36,7 @@
         <geometry>
           <mesh filename="package://iiwa_arm/meshes/iiwa14/visual/link_0.stl"/>
         </geometry>
-        <material name="Grey"/>
+        <material name="LightGrey"/>
       </visual>
       
       <collision>
@@ -44,7 +44,7 @@
         <geometry>
           <mesh filename="package://iiwa_arm/meshes/iiwa14/collision/link_0.stl"/>
         </geometry>
-        <material name="Grey"/>
+        <material name="LightGrey"/>
       </collision>
       
       <self_collision_checking>
@@ -122,7 +122,7 @@
         <geometry>
           <mesh filename="package://iiwa_arm/meshes/iiwa14/visual/link_2.stl"/>
         </geometry>
-        <material name="Orange"/>
+        <material name="LightGrey"/>
       </visual>
       
       <collision>
@@ -130,7 +130,7 @@
         <geometry>
           <mesh filename="package://iiwa_arm/meshes/iiwa14/collision/link_2.stl"/>
         </geometry>
-        <material name="Orange"/>
+        <material name="LightGrey"/>
       </collision>
     </link>
     
@@ -200,7 +200,7 @@
         <geometry>
           <mesh filename="package://iiwa_arm/meshes/iiwa14/visual/link_4.stl"/>
         </geometry>
-        <material name="Orange"/>
+        <material name="LightGrey"/>
       </visual>
       
       <collision>
@@ -208,7 +208,7 @@
         <geometry>
           <mesh filename="package://iiwa_arm/meshes/iiwa14/collision/link_4.stl"/>
         </geometry>
-        <material name="Orange"/>
+        <material name="LightGrey"/>
       </collision>
     </link>
     
@@ -278,7 +278,7 @@
         <geometry>
           <mesh filename="package://iiwa_arm/meshes/iiwa14/visual/link_6.stl"/>
         </geometry>
-        <material name="Orange"/>
+        <material name="LightGrey"/>
       </visual>
       
       <collision>
@@ -286,7 +286,7 @@
         <geometry>
           <mesh filename="package://iiwa_arm/meshes/iiwa14/collision/link_6.stl"/>
         </geometry>
-        <material name="Orange"/>
+        <material name="LightGrey"/>
       </collision>
     </link>
     
@@ -337,7 +337,7 @@
     
     <link name="${robot_name}_link_ee">
     </link>
-    
+
     <!--Extensions -->
     <xacro:iiwa_gazebo robot_name="${robot_name}" />
     <xacro:iiwa_transmission hardware_interface="${hardware_interface}"/>
