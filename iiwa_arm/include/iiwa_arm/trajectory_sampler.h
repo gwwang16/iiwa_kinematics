@@ -46,7 +46,7 @@ private:
   std::string target_description_param;
 
   const std::string PLANNING_GROUP = "manipulator";
-  const std::string GRIPPER_GROUP = "gripper_group";
+  const std::string GRIPPER_GROUP = "gripper";
   const std::string SHELF_MESH_PATH =
     "package://iiwa_arm/models/kinematics_shelf/kinematics_shelf.dae";
   const std::string BIN_MESH_PATH =

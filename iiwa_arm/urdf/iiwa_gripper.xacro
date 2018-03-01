@@ -2,7 +2,7 @@
 <!--
   Hexagon stacks
  -->
-<robot name="component_gripper" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="component_gripper" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:property name="M_PI" value="3.1415926535897931" /> 
   
@@ -12,7 +12,7 @@
   <xacro:property name="finger_mass" value="0.1" />
   <!-- Xacro macros -->
   <xacro:macro name="component_gripper" params="robot_name parent">
-     <link name="gripper_link">
+  <link name="gripper_link">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <mass value="${gripper_mass}"/>
@@ -70,6 +70,7 @@
     </collision>
   </link>
 
+  <!--Joints-->
   <joint name="right_gripper_finger_joint" type="prismatic">
     <origin rpy="0 0 0" xyz="${0.15/2} ${-0.0725/2.5} 0" />
     <parent link="gripper_link" />
@@ -78,6 +79,7 @@
     <limit effort="100" lower="-0.01" upper="${0.06/2}" velocity="0.05" />
     <dynamics damping="0.7" friction="1.0"/>
   </joint>
+
   <joint name="left_gripper_finger_joint" type="prismatic">
     <origin rpy="0 0 0" xyz="${0.15/2} ${0.0725/2.5} 0" />
     <parent link="gripper_link" />
@@ -86,13 +88,15 @@
     <limit effort="100" lower="-0.01" upper="${0.06/2}" velocity="0.05" />
     <dynamics damping="0.7" friction="1.0"/>
   </joint>
+
   <joint name="gripper_joint" type="fixed">
     <parent link="${parent}"/>
     <child link="gripper_link"/>
-    <origin xyz="0 0 0.035" rpy="0 -${M_PI/2} 0"/>
+    <origin xyz="0 0 ${0.045+0.035}" rpy="0 -${M_PI/2} 0"/>
     <axis xyz="0 1 0" />
   </joint>
 
+<!--transmissions-->
   <transmission name="${robot_name}_tran8">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="left_gripper_finger_joint">

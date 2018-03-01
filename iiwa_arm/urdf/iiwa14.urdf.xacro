@@ -21,7 +21,7 @@
   </xacro:iiwa14>
 
   <!--gripper-->
-  <xacro:component_gripper robot_name="$(arg robot_name)" parent="$(arg robot_name)_link_ee">
+  <xacro:component_gripper robot_name="$(arg robot_name)" parent="$(arg robot_name)_link_7">
   </xacro:component_gripper>
 
   
