@@ -69,16 +69,16 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
   ground_prim_pose.position.y = 0.0;
   ground_prim_pose.position.z = -0.025;
 
-  shelf_mesh_pose.position.x = 0.75;
+  shelf_mesh_pose.position.x = 1.0;
   shelf_mesh_pose.position.y = 0.0;
-  shelf_mesh_pose.position.z = 0.3;
+  shelf_mesh_pose.position.z = 0.26;
   shelf_mesh_pose.orientation.w = 0.707;
   shelf_mesh_pose.orientation.x = 0.0;
   shelf_mesh_pose.orientation.y = 0.0;
   shelf_mesh_pose.orientation.z = 0.707;
 
   bin_mesh_pose.position.x = 0.0;
-  bin_mesh_pose.position.y = 0.75;
+  bin_mesh_pose.position.y = 0.9;
   bin_mesh_pose.position.z = 0.0;
   bin_mesh_pose.orientation.w = 1.0;
   bin_mesh_pose.orientation.x = 0.0;
@@ -121,8 +121,8 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
     // Create text marker for displaying current state
     Eigen::Affine3d text_pose = Eigen::Affine3d::Identity();
     Eigen::Affine3d instr_pose = Eigen::Affine3d::Identity();
-    text_pose.translation().z() = 4.0;
-    instr_pose.translation().z() = 3.5;
+    text_pose.translation().z() = 2.0;
+    instr_pose.translation().z() = 1.5;
     visual_tools.publishText(text_pose, "Welcome to pick-place project!",
                              rviz_visual_tools::WHITE, rviz_visual_tools::XXXXLARGE);
     // visual_tools.publishText(instr_pose, "Press 'Next' to continue...",
@@ -150,19 +150,19 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
 
     geometry_msgs::Pose target_pose, bin_pose, target_reach;
     target_pose.orientation.w = 1.0;
-    target_pose.position.x = target_x - 0.4;
+    target_pose.position.x = target_x - 0.2;
     target_pose.position.y = target_y;
-    target_pose.position.z = target_z - 0.1;
+    target_pose.position.z = target_z;
 
     target_reach.orientation.w = 1.0;
-    target_reach.position.x = target_x - 0.2;
+    target_reach.position.x = target_x;
     target_reach.position.y = target_y;
-    target_reach.position.z = target_z - 0.1;
+    target_reach.position.z = target_z;
 
     bin_pose.orientation.w = 1.0;
-    bin_pose.position.x = bin_x - 0.1;
+    bin_pose.position.x = bin_x;
     bin_pose.position.y = bin_y;
-    bin_pose.position.z = bin_z + 1.6;
+    bin_pose.position.z = bin_z + 0.3;
 
     // set starting pose
     move_group.setStartStateToCurrentState();

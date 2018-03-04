@@ -80,10 +80,10 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <state world_name='default'>
-      <sim_time>1567 311000000</sim_time>
-      <real_time>166 266150235</real_time>
-      <wall_time>1520147751 125190626</wall_time>
-      <iterations>100643</iterations>
+      <sim_time>1609 604000000</sim_time>
+      <real_time>35 30182447</real_time>
+      <wall_time>1520154932 358260725</wall_time>
+      <iterations>20318</iterations>
       <model name='cafe'>
         <pose frame=''>-0.5025 -0.580907 0 0 -0 1.57</pose>
         <scale>1 1 1</scale>
@@ -105,23 +105,23 @@
         </link>
       </model>
       <model name='kinematics_bin'>
-        <pose frame=''>0 0.75 0.194322 0 -2e-06 -1e-06</pose>
+        <pose frame=''>0 0.9 0.194322 2e-06 2e-06 -2e-06</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose frame=''>0 0.75 0.194322 0 -2e-06 -1e-06</pose>
+          <pose frame=''>0 0.9 0.194322 2e-06 2e-06 -2e-06</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-0.025072 0.006389 -0.011234 -1.40503 0.751407 -0.000591</acceleration>
-          <wrench>-0.025072 0.006389 -0.011234 0 -0 0</wrench>
+          <acceleration>0.024896 -0.00654 0.002927 1.43826 -0.790507 0.000607</acceleration>
+          <wrench>0.024896 -0.00654 0.002927 0 -0 0</wrench>
         </link>
       </model>
       <model name='kinematics_shelf'>
-        <pose frame=''>0.749998 1e-06 0.443867 -5e-05 0 1.57082</pose>
+        <pose frame=''>1.00001 0 0.443864 1e-06 -0 1.57087</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose frame=''>0.749998 1e-06 0.443867 -5e-05 0 1.57082</pose>
+          <pose frame=''>1.00001 0 0.443864 1e-06 -0 1.57087</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>2.07771 -1.01567 20.2182 0.855981 1.24706 -3.14151</acceleration>
-          <wrench>2.07771 -1.01567 20.2182 0 -0 0</wrench>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <light name='sun'>
@@ -482,7 +482,6 @@
         </inertial>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
-        <gravity>1</gravity>
         <visual name='visual'>
           <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
@@ -565,9 +564,9 @@
           </surface>
         </collision>
       </link>
-      <static>0</static>
+      <static>1</static>
       <allow_auto_disable>1</allow_auto_disable>
-      <pose frame=''>0.699972 7e-06 0.613244 -4e-06 -6e-06 1.56015</pose>
+      <pose frame=''>1.00001 0 0.443864 1e-06 -0 1.57087</pose>
     </model>
   </world>
 </sdf>
