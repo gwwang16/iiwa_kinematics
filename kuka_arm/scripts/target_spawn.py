@@ -24,7 +24,8 @@ def update_spawn_location():
         sys.exit("Invalid Target Spawn point selected, valid range is 0-9")
     elif select_target_spawn == 0:
         print("Random Target Spawn point selected")
-        select = randint(1, 9)
+        # select = randint(1, 9)
+        select = randint(4, 9)
     else:
         select = select_target_spawn
 

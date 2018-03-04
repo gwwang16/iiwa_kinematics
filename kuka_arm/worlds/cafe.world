@@ -80,10 +80,10 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <state world_name='default'>
-      <sim_time>1785 554000000</sim_time>
-      <real_time>145 97242765</real_time>
-      <wall_time>1520163804 94708148</wall_time>
-      <iterations>93211</iterations>
+      <sim_time>2014 446000000</sim_time>
+      <real_time>43 301824717</real_time>
+      <wall_time>1520170555 816208332</wall_time>
+      <iterations>29220</iterations>
       <model name='cafe'>
         <pose frame=''>-0.5025 -0.580907 0 0 -0 1.57</pose>
         <scale>1 1 1</scale>
@@ -105,20 +105,20 @@
         </link>
       </model>
       <model name='kinematics_bin'>
-        <pose frame=''>0 0.8 0.194322 0 -1e-06 -6e-06</pose>
+        <pose frame=''>0 0.8 0.194322 1e-06 1e-06 -9e-06</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose frame=''>0 0.8 0.194322 0 -1e-06 -6e-06</pose>
+          <pose frame=''>0 0.8 0.194322 1e-06 1e-06 -9e-06</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-0.021397 0.002321 -0.087441 -0.511575 1.56117 -0.00048</acceleration>
-          <wrench>-0.021397 0.002321 -0.087441 0 -0 0</wrench>
+          <acceleration>0.025072 -0.00639 0.011234 1.40507 -0.751419 0.000591</acceleration>
+          <wrench>0.025072 -0.00639 0.011234 0 -0 0</wrench>
         </link>
       </model>
       <model name='kinematics_shelf'>
-        <pose frame=''>0.8 0 0.6 0 -0 1.57087</pose>
+        <pose frame=''>0.8 0 0.443864 0 -0 1.57078</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose frame=''>0.8 0 0.6 0 -0 1.57087</pose>
+          <pose frame=''>0.8 0 0.443864 0 -0 1.57078</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -130,7 +130,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose frame=''>-2.28149 -1.73588 1.99548 0 0.089456 0.745249</pose>
+        <pose frame=''>-2.28623 -1.73158 1.98914 0 0.089456 0.745249</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
@@ -469,7 +469,7 @@
       <link name='link_0'>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <inertial>
-          <mass>1</mass>
+          <mass>5</mass>
           <inertia>
             <ixx>0.166667</ixx>
             <ixy>0</ixy>
@@ -564,9 +564,9 @@
           </surface>
         </collision>
       </link>
-      <static>0</static>
+      <static>1</static>
       <allow_auto_disable>1</allow_auto_disable>
-      <pose frame=''>0.422887 -0.625126 1.00851 0 -0 1.57087</pose>
+      <pose frame=''>0.80002 0.000615 0.443864 0 -0 1.57078</pose>
     </model>
   </world>
 </sdf>

@@ -151,7 +151,7 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
 
     geometry_msgs::Pose target_pose, bin_pose, target_reach;
     target_pose.orientation.w = 1.0;
-    target_pose.position.x = target_x - 0.3;
+    target_pose.position.x = target_x - 0.25;
     target_pose.position.y = target_y;
     target_pose.position.z = target_z - 0.18;
 

@@ -5,7 +5,7 @@
     <inertial>
       <origin xyz="0 0 0" />
       <mass value="0.1" />
-      <inertia  ixx="0.006" ixy="0"  ixz="0"  iyy="0.006"  iyz="0"  izz="0.002"/>
+      <inertia  ixx="0.00006" ixy="0"  ixz="0"  iyy="0.00006"  iyz="0"  izz="0.00002"/>
     </inertial>
     <visual>
       <origin xyz="0 0 0"/>

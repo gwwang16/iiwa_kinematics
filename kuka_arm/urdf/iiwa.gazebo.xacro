@@ -27,7 +27,7 @@
 
     <!-- Link2 -->
     <gazebo reference="link_2">
-      <material>Gazebo/Orange</material>
+      <material>Gazebo/Grey</material>
       <mu1>0.2</mu1>
       <mu2>0.2</mu2>
     </gazebo>
@@ -42,7 +42,7 @@
 
     <!-- Link4 -->
     <gazebo reference="link_4">
-      <material>Gazebo/Orange</material>
+      <material>Gazebo/Grey</material>
       <mu1>0.2</mu1>
       <mu2>0.2</mu2>
     </gazebo>
@@ -56,7 +56,7 @@
 
     <!-- Link6 -->
     <gazebo reference="link_6">
-      <material>Gazebo/Orange</material>
+      <material>Gazebo/Grey</material>
       <mu1>0.2</mu1>
       <mu2>0.2</mu2>
     </gazebo>
