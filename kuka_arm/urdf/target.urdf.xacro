@@ -10,14 +10,14 @@
     <visual>
       <origin xyz="0 0 0"/>
       <geometry>
-        <cylinder radius="0.02" length="0.08"/>
+        <cylinder radius="0.015" length="0.08"/>
         <!--box size="0.10 0.10 0.25"/-->
       </geometry>
     </visual>
     <collision>
       <origin xyz="0 0 0"/>
       <geometry>
-        <cylinder radius="0.02" length="0.08"/>
+        <cylinder radius="0.015" length="0.08"/>
         <!--box size="0.10 0.10 0.25"/-->
       </geometry>
     </collision>
