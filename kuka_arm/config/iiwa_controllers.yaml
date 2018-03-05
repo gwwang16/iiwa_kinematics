@@ -22,8 +22,8 @@ kuka_arm:
         - right_gripper_finger_joint
         - left_gripper_finger_joint
       gains:
-        right_gripper_finger_joint: {p: 100,  d: 2, i: 10, i_clamp: 10}
-        left_gripper_finger_joint: {p: 100,  d: 2, i: 10, i_clamp: 10}
+        right_gripper_finger_joint: {p: 100,  d: 2, i: 10, i_clamp: 30}
+        left_gripper_finger_joint: {p: 100,  d: 2, i: 10, i_clamp: 30}
       constraints:
         goal_time: 0.5
         right_gripper_finger_joint:

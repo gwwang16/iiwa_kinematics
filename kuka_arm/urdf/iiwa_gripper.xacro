@@ -7,11 +7,12 @@
   <xacro:property name="M_PI" value="3.1415926535897931" /> 
   
   <!-- Xacro properties -->
-  <xacro:property name="M_SCALE" value="0.001"/>
   <xacro:property name="gripper_mass" value="0.3" />
   <xacro:property name="finger_mass" value="0.1" />
   <!-- Xacro macros -->
   <xacro:macro name="component_gripper" params="parent">
+
+  <!--links-->
   <link name="gripper_link">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -77,7 +78,7 @@
     <child link="right_gripper_finger_link" />
     <axis xyz="0 1 0" />
     <limit effort="100" lower="-0.01" upper="0.03" velocity="0.5" />
-    <dynamics damping="0.7" friction="1.0"/>
+    <dynamics damping="0.7" friction="0.5"/>
   </joint>
 
   <joint name="left_gripper_finger_joint" type="prismatic">
@@ -86,7 +87,7 @@
     <child link="left_gripper_finger_link" />
     <axis xyz="0 -1 0" />
     <limit effort="100" lower="-0.01" upper="0.03" velocity="0.5" />
-    <dynamics damping="0.7" friction="1.0"/>
+    <dynamics damping="0.7" friction="0.5"/>
   </joint>
 
   <joint name="gripper_joint" type="fixed">
@@ -118,6 +119,25 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+
+  <!-- grasp plugin -->
+  <gazebo>
+    <plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so">
+      <arm>
+        <arm_name>kuka_arm</arm_name>
+        <palm_link>link_7</palm_link>
+        <gripper_link>right_gripper_finger_link</gripper_link>
+        <gripper_link>left_gripper_finger_link</gripper_link>
+      </arm>
+      <forces_angle_tolerance>100</forces_angle_tolerance>
+      <update_rate>10</update_rate>
+      <grip_count_threshold>4</grip_count_threshold>
+      <max_grip_count>8</max_grip_count>
+      <release_tolerance>0.003</release_tolerance>
+      <disable_collisions_on_attach>false</disable_collisions_on_attach>
+      <contact_topic>__default_topic__</contact_topic>
+    </plugin>
+  </gazebo>
 
   </xacro:macro>
 </robot>

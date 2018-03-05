@@ -153,12 +153,12 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
     target_pose.orientation.w = 1.0;
     target_pose.position.x = target_x - 0.25;
     target_pose.position.y = target_y;
-    target_pose.position.z = target_z - 0.18;
+    target_pose.position.z = target_z - 0.19;
 
     target_reach.orientation.w = 1.0;
-    target_reach.position.x = target_x - 0.1;
+    target_reach.position.x = target_x - 0.09;
     target_reach.position.y = target_y;
-    target_reach.position.z = target_z - 0.18;
+    target_reach.position.z = target_z - 0.19;
 
     bin_pose.orientation.w = 1.0;
     bin_pose.position.x = bin_x - 0.005;
