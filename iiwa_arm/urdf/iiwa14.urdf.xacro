@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot name="iiwa_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Import Rviz colors -->
+  <xacro:include filename="$(find iiwa_arm)/urdf/materials.xacro" />
+  <!--Import the lbr iiwa macro -->
+  <xacro:include filename="$(find iiwa_arm)/urdf/iiwa14.xacro"/>
+  <!--Import the gripper macro -->
+  <xacro:include filename="$(find iiwa_arm)/urdf/iiwa_gripper.xacro"/>
+  <!--<xacro:include filename="$(find slam_project)/urdf/accessories/hexagons.urdf.xacro"/>-->
+  
+  <xacro:arg name="hardware_interface" default="hardware_interface/PositionJointInterface"/>
+  <xacro:arg name="robot_name" default="iiwa_arm"/>
+  <xacro:arg name="origin_xyz" default="0 0 0"/>
+  <xacro:arg name="origin_rpy" default="0 0 0"/>
+  
+  <!--iiwa-->
+  <xacro:iiwa14 hardware_interface="$(arg hardware_interface)" robot_name="$(arg robot_name)">
+    <origin xyz="$(arg origin_xyz)" rpy="$(arg origin_rpy)" />
+  </xacro:iiwa14>
+
+  <!--gripper-->
+  <xacro:component_gripper parent="link_7">
+  </xacro:component_gripper>
+
+  
+</robot>

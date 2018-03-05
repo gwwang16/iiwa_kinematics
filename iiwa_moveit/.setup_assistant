@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: iiwa_arm
+    relative_path: urdf/iiwa14.urdf.xacro
+  SRDF:
+    relative_path: config/iiwa_arm.srdf
+  CONFIG:
+    author_name: wang
+    author_email: gwwang17@gmail.com
+    generated_timestamp: 1519917081

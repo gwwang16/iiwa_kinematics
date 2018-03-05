@@ -1,0 +1,8 @@
+<launch>
+  <!--Load the joint controllers to param server-->
+  <rosparam file="$(find iiwa_arm)/config/iiwa_controllers.yaml" command="load"/>
+
+  <!--Load controllers-->
+  <node name="spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/iiwa_arm" args="joint_state_controller arm_controller gripper_controller"/>
+</launch>
