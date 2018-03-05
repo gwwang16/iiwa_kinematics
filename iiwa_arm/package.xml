@@ -7,26 +7,14 @@
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="harsh@electricmovement.com">Harsh Pandya</maintainer>
+  <maintainer email="gwwang17@gmail.com">wang</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
   <!-- Commonly used license strings: -->
   <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
   <license>TODO</license>
-
-
-  <!-- Url tags are optional, but multiple are allowed, one per tag -->
-  <!-- Optional attribute type can be: website, bugtracker, or repository -->
-  <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/simple_arm</url> -->
-
-
-  <!-- Author tags are optional, multiple are allowed, one per tag -->
-  <!-- Authors do not have to be maintainers, but could be -->
-  <!-- Example: -->
-  <author email="harsh@electricmovement.com">Harsh Pandya</author>
-
+  
 
   <!-- The *_depend tags are used to specify dependencies -->
   <!-- Dependencies can be catkin packages or system dependencies -->
@@ -71,8 +59,4 @@
   <run_depend>robot_state_publisher</run_depend>
   <run_depend>xacro</run_depend>
 
-
-  <!-- The export tag contains other, unspecified, tags -->
-  <export>
-  </export>
 </package>
