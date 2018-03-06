@@ -15,14 +15,15 @@
   <xacro:property name="max_effort" value="300"/>
   <xacro:property name="max_velocity" value="10"/>
   
-  <xacro:macro name="iiwa14" params="hardware_interface robot_name *origin">
+  <xacro:macro name="iiwa14" params="parent hardware_interface robot_name *origin">
     
     <!--joint between {parent} and link_0-->
-    <!--<joint name="${parent}_${robot_name}_joint" type="fixed">
+    <joint name="${parent}" type="fixed">
       <xacro:insert_block name="origin"/>
       <parent link="${parent}"/>
-      <child link="${robot_name}_link_0"/>
-    </joint>-->
+      <child link="base_footprint"/>
+    </joint>
+
     <link name="base_footprint"/>
 
     <joint name="fixed_base_joint" type="fixed">

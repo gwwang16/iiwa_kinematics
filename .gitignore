@@ -1,0 +1,4 @@
+*.ipynb
+.ipynb_checkpoints
+intro.md
+*.pptx

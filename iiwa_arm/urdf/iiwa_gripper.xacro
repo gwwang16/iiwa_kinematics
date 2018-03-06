@@ -24,6 +24,7 @@
       <geometry>
         <mesh filename="package://iiwa_arm/meshes/gripper/gripper_base.dae" scale="0.5 0.4 0.3"/>
       </geometry>
+      <material name="LightGrey"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -43,6 +44,7 @@
       <geometry>
         <mesh filename="package://iiwa_arm/meshes/gripper/finger_right.dae" scale="0.5 0.5 0.5"/>
       </geometry>
+      <material name="LightGrey"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -62,6 +64,7 @@
       <geometry>
         <mesh filename="package://iiwa_arm/meshes/gripper/finger_left.dae" scale="0.5 0.5 0.5"/>
       </geometry>
+      <material name="LightGrey"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -78,7 +81,7 @@
     <child link="right_gripper_finger_link" />
     <axis xyz="0 1 0" />
     <limit effort="100" lower="-0.01" upper="0.03" velocity="0.5" />
-    <dynamics damping="0.7" friction="0.5"/>
+    <dynamics damping="0.5"/>
   </joint>
 
   <joint name="left_gripper_finger_joint" type="prismatic">
@@ -87,7 +90,7 @@
     <child link="left_gripper_finger_link" />
     <axis xyz="0 -1 0" />
     <limit effort="100" lower="-0.01" upper="0.03" velocity="0.5" />
-    <dynamics damping="0.7" friction="0.5"/>
+    <dynamics damping="0.5"/>
   </joint>
 
   <joint name="gripper_joint" type="fixed">
@@ -137,6 +140,26 @@
       <disable_collisions_on_attach>false</disable_collisions_on_attach>
       <contact_topic>__default_topic__</contact_topic>
     </plugin>
+  </gazebo>
+
+  <!--material-->
+  <!-- gripper_link -->
+  <gazebo reference="gripper_link">
+    <material>Gazebo/Grey</material>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+  </gazebo>
+  <!-- left_gripper_finger_link -->
+  <gazebo reference="left_gripper_finger_link">
+    <material>Gazebo/Grey</material>
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+  </gazebo>
+  <!-- right_gripper_finger_link -->
+  <gazebo reference="right_gripper_finger_link">
+    <material>Gazebo/Grey</material>
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
   </gazebo>
 
   </xacro:macro>
