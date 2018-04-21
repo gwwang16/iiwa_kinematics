@@ -154,7 +154,9 @@
       <child link="link_3"/>
       <origin xyz="0 0.2045 0" rpy="${PI / 2} 0 ${PI}"/>
       <axis xyz="0 0 1"/>
-      <limit lower="${-170 * PI / 180}" upper="${170 * PI / 180}"
+      <!--<limit lower="${-170 * PI / 180}" upper="${170 * PI / 180}"
+             effort="${max_effort}" velocity="${max_velocity}" />-->
+      <limit lower="${0}" upper="${0}"
              effort="${max_effort}" velocity="${max_velocity}" />
       <safety_controller soft_lower_limit="${-168 * PI / 180}"
                          soft_upper_limit="${168 * PI / 180}"

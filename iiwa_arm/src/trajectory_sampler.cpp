@@ -237,7 +237,7 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
       for (std::size_t i = 0; i < robot_trajectory->getWayPointCount(); ++i)
       {
         const Eigen::Affine3d& eef_pose =
-          robot_trajectory->getWayPoint(i).getGlobalLinkTransform(joint_model_group->getLinkModel("link_6"));
+          robot_trajectory->getWayPoint(i).getGlobalLinkTransform(joint_model_group->getLinkModel("link_7"));
         geometry_msgs::Pose gripper_pose;
         tf::poseEigenToMsg(eef_pose, gripper_pose);
         path.push_back(gripper_pose);
@@ -400,7 +400,7 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
       for (std::size_t i = 0; i < robot_trajectory->getWayPointCount(); ++i)
       {
         const Eigen::Affine3d& eef_pose =
-          robot_trajectory->getWayPoint(i).getGlobalLinkTransform(joint_model_group->getLinkModel("link_6"));
+          robot_trajectory->getWayPoint(i).getGlobalLinkTransform(joint_model_group->getLinkModel("link_7"));
         geometry_msgs::Pose gripper_pose;
         tf::poseEigenToMsg(eef_pose, gripper_pose);
         path.push_back(gripper_pose);
