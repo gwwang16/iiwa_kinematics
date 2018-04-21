@@ -34,7 +34,7 @@ def update_spawn_location():
     z_select = location["locations"][select - 1][2]
 
     # set bin location param
-    rospy.set_param('target_drop_location', {'x': 0.0, 'y': 0.8, 'z': 0.0})
+    rospy.set_param('target_drop_location', {'x': 0.0, 'y': 0.70, 'z': 0.40})
 
     # set selected location param
     rospy.set_param('target_spawn_location', {'x': x_select, 'y': y_select, 'z': z_select})

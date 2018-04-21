@@ -193,7 +193,7 @@ def handle_calculate_IK(req):
 
             l24 = a3
             l46 = d5
-            l26 = sqrt(np.sum(np.square(pwc_2)))
+            l26 = sqrt(pwc_2[0]**2 + pwc_2[1]**2 + pwc_2[2]**2)
 
             theta21 = atan2(pwc_2[2], sqrt(pwc_2[0]**2 + pwc_2[1]**2))
             c624 = (-l46**2 + l24**2 + l26**2) / (2*l24 * l26)

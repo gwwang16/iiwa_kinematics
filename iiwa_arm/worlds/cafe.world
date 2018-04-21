@@ -80,10 +80,10 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <state world_name='default'>
-      <sim_time>2077 655000000</sim_time>
-      <real_time>66 67012934</real_time>
-      <wall_time>1520174783 488593010</wall_time>
-      <iterations>63209</iterations>
+      <sim_time>2127 934000000</sim_time>
+      <real_time>50 637335022</real_time>
+      <wall_time>1524297561 252441155</wall_time>
+      <iterations>50279</iterations>
       <model name='cafe'>
         <pose frame=''>-0.5025 -0.580907 0 0 -0 1.57</pose>
         <scale>1 1 1</scale>
@@ -105,13 +105,13 @@
         </link>
       </model>
       <model name='kinematics_bin'>
-        <pose frame=''>0 0.8 0.194323 -9e-06 -6e-06 -1e-05</pose>
+        <pose frame=''>0 0.7 0.194319 1.3e-05 3.1e-05 -1e-05</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose frame=''>0 0.8 0.194323 -9e-06 -6e-06 -1e-05</pose>
+          <pose frame=''>0 0.7 0.194319 1.3e-05 3.1e-05 -1e-05</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
+          <acceleration>0.15478 -0.05116 -2.60055 1.88984 0.328642 -3.14153</acceleration>
+          <wrench>1.5478 -0.511598 -26.0055 0 -0 0</wrench>
         </link>
       </model>
       <model name='kinematics_shelf'>

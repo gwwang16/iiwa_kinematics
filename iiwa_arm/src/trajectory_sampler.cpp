@@ -78,7 +78,7 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
   shelf_mesh_pose.orientation.z = 0.707;
 
   bin_mesh_pose.position.x = 0.0;
-  bin_mesh_pose.position.y = 0.8;
+  bin_mesh_pose.position.y = 0.7;
   bin_mesh_pose.position.z = 0.0;
   bin_mesh_pose.orientation.w = 1.0;
   bin_mesh_pose.orientation.x = 0.0;
@@ -161,9 +161,9 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
     target_reach.position.z = target_z - 0.18;
 
     bin_pose.orientation.w = 1.0;
-    bin_pose.position.x = bin_x - 0.005;
+    bin_pose.position.x = bin_x;
     bin_pose.position.y = bin_y;
-    bin_pose.position.z = bin_z + 0.4;
+    bin_pose.position.z = bin_z;
 
     // set starting pose
     move_group.setStartStateToCurrentState();
@@ -479,7 +479,7 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
                              rviz_visual_tools::WHITE, rviz_visual_tools::XXXLARGE);
     visual_tools.trigger();
     OpenGripper();
-    ros::Duration(2.0).sleep();
+    ros::Duration(3.0).sleep();
 
     // Update cycle cycle_counter
     cycle_counter++;
