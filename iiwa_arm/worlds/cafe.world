@@ -409,7 +409,7 @@
           <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/home/wang/.gazebo/models/kinematics_shelf/kinematics_shelf.dae</uri>
+              <uri>model://kinematics_shelf/kinematics_shelf.dae</uri>
               <scale>0.3 0.3 0.3</scale>
             </mesh>
           </geometry>
@@ -513,7 +513,6 @@
           <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/home/wang/.gazebo/models/kinematics_bin/kinematics_bin.dae</uri>
               <scale>0.3 0.3 0.3</scale>
             </mesh>
           </geometry>
