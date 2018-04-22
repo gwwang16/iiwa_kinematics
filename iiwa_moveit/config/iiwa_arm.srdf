@@ -28,17 +28,17 @@
         <joint name="joint_7" value="0" />
     </group_state>
     <group_state name="closed_pose" group="gripper_group">
-        <joint name="left_gripper_finger_joint" value="0.03" />
-        <joint name="right_gripper_finger_joint" value="0.03" />
+        <joint name="left_gripper_finger_joint" value="0.02" />
+        <joint name="right_gripper_finger_joint" value="0.02" />
     </group_state>
     <group_state name="open_pose" group="gripper_group">
         <joint name="left_gripper_finger_joint" value="0" />
         <joint name="right_gripper_finger_joint" value="0" />
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="gripper" parent_link="link_7" group="gripper_group" />
+    <end_effector name="gripper" parent_link="link_7" group="gripper_group" parent_group="arm_group" />
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
-    <virtual_joint name="world_joint" type="fixed" parent_frame="world" child_link="base_footprint" />
+    <virtual_joint name="world_joint" type="fixed" parent_frame="world_frame" child_link="world" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="base_link" link2="link_1" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="link_2" reason="Never" />

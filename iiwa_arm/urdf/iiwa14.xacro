@@ -33,17 +33,17 @@
     </joint>
 
     <link name="base_link">
-      <!--<inertial>
+      <inertial>
         <origin xyz="-0.1 0 0.07" rpy="0 0 0"/>
         <mass value="5"/>
         <inertia ixx="0.05"  ixy="0"  ixz="0" iyy="0.06" iyz="0" izz="0.03" />
-      </inertial>-->
+      </inertial>
 
-      <inertial>
+      <!--<inertial>
         <origin xyz="-0.1 0 0.07" rpy="0 0 0"/>
         <mass value="50"/>
         <inertia ixx="5"  ixy="0"  ixz="0" iyy="6" iyz="0" izz="3" />
-      </inertial>
+      </inertial>-->
       
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>

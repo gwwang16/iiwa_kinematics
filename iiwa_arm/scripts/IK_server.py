@@ -8,15 +8,12 @@ from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from geometry_msgs.msg import Pose
 from mpmath import *
 from sympy import *
-import os
-import pickle
+
+import pickle, os, time
 import numpy as np
 
 from sympy import symbols, cos, sin, pi, simplify, sqrt, atan2, lambdify
 from sympy.matrices import Matrix
-
-import time
-
 
 
 def handle_calculate_IK(req):
@@ -62,7 +59,7 @@ def handle_calculate_IK(req):
             return R_z
         
 
-        def Euler_angles_from_matrix_URDF(R):
+        def Euler_angles_from_matrix_URDF(R, angles_pre):
             ''' Calculate q4-6 from R3_6 rotation matrix
             Input R is 3x3 rotation matrix, output are Euler angles :q4, q5, q6'''
             r13 = R[0,2]
@@ -72,14 +69,19 @@ def handle_calculate_IK(req):
             # q5 = atan2(sqrt(r13**2 + r33**2), r23)
             # q4 = atan2(r33, -r13)
             # q6 = atan2(-r22, r21)
-            q6 = atan2(sqrt(r13**2 + r33**2), -r23)
+            if r23 is not 0:
+                q6 = atan2(sqrt(r13**2 + r33**2), -r23)
 
-            if sin(q6) < 0:
-                q5 = atan2(-r33, -r13)
-                q7 = atan2(r22, -r21)
+                if sin(q6) < 0:
+                    q5 = atan2(-r33, -r13)
+                    q7 = atan2(r22, -r21)
+                else:
+                    q5 = atan2(r33, r13)
+                    q7 = atan2(-r22, r21)
             else:
-                q5 = atan2(r33, r13)
-                q7 = atan2(-r22, r21)
+                q5 = angles_pre[4]
+                q6 = angles_pre[5]
+                q7 = angles_pre[6]
                 
             return np.float64(q5), np.float64(q6), np.float64(q7)
             
@@ -92,20 +94,17 @@ def handle_calculate_IK(req):
         r, p, y = symbols("r p y") # end-effector orientation
         px_s, py_s, pz_s = symbols("px_s py_s pz_s") # end-effector position
 
-        R_corr = rot_y(pi/2) # Compensation matix from URDF to world frame
-
         theta1,theta2,theta3,theta4,theta5,theta6,theta7 = 0,0,0,0,0,0,0
-        angles_pre = (0,0,0,0,0,0,0)
+        angles_pre = (0,0,0,0,0,0)
         r2d = 180./np.pi
         d2r = np.pi/180
         loop_times = []
 
-        Joint_limits = [168.0*d2r, 118.0*d2r,
-                        168.0*d2r, 118.0*d2r,
-                        168.0*d2r, 118.0*d2r,
-                        173.0*d2r]
+        Joint_limits = [170.0*d2r, 120.0*d2r,
+                        170.0*d2r, 120.0*d2r,
+                        170.0*d2r, 120.0*d2r,
+                        175.0*d2r]
                     
-        
         # The Modified DH params
         # fix theta 3
         s = {alpha0:      0, a0:      0, d1:  0.36, q1: q1,
@@ -160,10 +159,41 @@ def handle_calculate_IK(req):
             print("-----------------------------------------")
             print("Transformation matrices have been loaded!")         
 
+        # Joint angle calculation
+        pg_0 = Matrix([[px_s],[py_s],[pz_s]])
+        R0_g = R0_g_sym[0:3,0:3]
+        pwc_0 = pg_0 - 0.161 * R0_g * Matrix([[0],[0],[1]])
+        theta1_sym = atan2(pwc_0[1], pwc_0[0]).subs(s)
+        
+        pwc_2 = pwc_0 - p2_0_sym[0:3,:]
 
+        l24 = a3
+        l46 = d5
+        l26 = sqrt(pwc_2[0]**2 + pwc_2[1]**2 + pwc_2[2]**2)
+
+        theta21 = atan2(pwc_2[2], sqrt(pwc_2[0]**2 + pwc_2[1]**2))
+        c624 = (-l46**2 + l24**2 + l26**2) / (2*l24 * l26)
+        theta22 = atan2(sqrt(1 - c624**2), c624)
+        theta2_sym = (pi/2 - (theta21 + theta22)).subs(s)
+
+        c246 = (-l26**2 + l24**2 + l46**2) / (2*l24*l46)
+        theta4_aux = atan2(sqrt(1 - c246**2), c246)
+        theta4_sym = -(pi - theta4_aux).subs(s)
+        
+        # Transfer symbol into numpy function to evaluate an expression more efficient
+        theta1_f = lambdify((px_s,py_s,pz_s,r,p,y), theta1_sym, "numpy")
+        theta2_f = lambdify((q1,px_s,py_s,pz_s,r,p,y), theta2_sym, "numpy")
+        theta4_f = lambdify((q1,px_s,py_s,pz_s,r,p,y), theta4_sym, "numpy")
+
+        # Calculate R3_6 for theta4-6 
+        R4_7_sym = R0_4_inv * R0_g
+        R4_7_f = lambdify((q1,q2,q4,px_s,py_s,pz_s,r,p,y), R4_7_sym, "numpy")
+
+        loop_start_time = time.time()
         # Initialize service response
         joint_trajectory_list = []
         for x in xrange(0, len(req.poses)):
+            loop_current_time = time.time()
             # IK code starts here
             joint_trajectory_point = JointTrajectoryPoint()
 
@@ -180,64 +210,52 @@ def handle_calculate_IK(req):
 
             ### Your IK code here
 	        # Compensate for rotation discrepancy between DH parameters and Gazebo
-            pg_0 = Matrix([[px],[py],[pz]])
-            R0_g_value = R0_g_sym.evalf(subs={r: roll, p: pitch, y: yaw})
-            R0_g = R0_g_value[0:3,0:3]
-            
-            pwc_0 = pg_0 - (0.161) * R0_g[0:3, 0:3] * Matrix([[0],[0],[1]])
-            theta1 = atan2(pwc_0[1], pwc_0[0])
-            theta1 = np.float64(theta1)
+            # There is no rotation discrepancy between DH tables and urdf here
+            # R_corr = 1 # Compensation matix from URDF to world frame
 
-            p2_0 = p2_0_sym.evalf(subs={q1: theta1})
-            pwc_2 = pwc_0 - p2_0[0:3,:]
+            # Calculate joint angles using Geometric IK method           
+            theta1 = theta1_f(px, py, pz, roll, pitch, yaw)          
+            theta2 = theta2_f(theta1, px, py, pz, roll, pitch, yaw)
+            theta4 = theta4_f(theta1, px, py, pz, roll, pitch, yaw)
 
-            l24 = a3
-            l46 = d5
-            l26 = sqrt(pwc_2[0]**2 + pwc_2[1]**2 + pwc_2[2]**2)
+            R4_7 = R4_7_f(theta1, theta2, theta4, px, py, pz, roll, pitch, yaw)
 
-            theta21 = atan2(pwc_2[2], sqrt(pwc_2[0]**2 + pwc_2[1]**2))
-            c624 = (-l46**2 + l24**2 + l26**2) / (2*l24 * l26)
-            theta22 = atan2(sqrt(1 - c624**2), c624)
-            theta2 = (pi/2 - (theta21 + theta22)).subs(s)
-            theta2 = np.float64(theta2)
+            theta5, theta6, theta7 = Euler_angles_from_matrix_URDF(R4_7, angles_pre)
+            angles_pre = (theta1, theta2, theta4, theta5, theta6, theta7)
 
-            c246 = (-l26**2 + l24**2 + l46**2) / (2*l24*l46)
-            theta4 = atan2(sqrt(1 - c246**2), c246)
-            theta4 = -(pi - theta4).subs(s)
-            theta4 = np.float64(theta4)
+            # print "theta1: ", theta1 * r2d
+            # print "theta2: ", theta2 * r2d
+            # print "theta4: ", theta4 * r2d
+            # print "theta5: ", theta5 * r2d
+            # print "theta6: ", theta6 * r2d
+            # print "theta7: ", theta7 * r2d
 
-            R0_4_inv_value = R0_4_inv.evalf(subs={q1:theta1, q2:theta2, q4:theta4})
-            R4_7 =  R0_4_inv_value * R0_g
-
-            theta5, theta6, theta7 = Euler_angles_from_matrix_URDF(R4_7)
-
-            # print("px,py,pz: {:>4f}, {:>4f}, {:>4f}".format(px, py, pz))
-            # print("roll, pitch, yaw: {:>4f}, {:>4f}, {:>4f}".format(roll,pitch,yaw))
-
-            # Populate response for the IK request
-            # In the next line replace theta1,theta2...,theta6 by your joint angle variables
-                    # print("R3_6", R3_6)
-            print "theta1: ", theta1 * r2d
-            print "theta2: ", theta2 * r2d
-            print "theta4: ", theta4 * r2d
-            print "theta5: ", theta5 * r2d
-            print "theta6: ", theta6 * r2d
-            print "theta7: ", theta7 * r2d
-
-            # theta1 = 0
-            # theta2 = 90*d2r
-            # theta4 = 90*d2r
-
-            thetas = [theta1, theta2, theta3, theta4, theta5,theta6, theta7]
+            thetas = [theta1, theta2, theta3, theta4, theta5, theta6, theta7]
+        
             for i in range(0,7):
                 if np.abs(thetas[i]) > Joint_limits[i]:
                     thetas[i] = Joint_limits[i] * np.sign(thetas[i])
-                    print("Warning! IK gives values out of bounds for joint {:>d}".format(i+1))
+                    print("Warning: IK gives value out of bounds for joint {:>d}".format(i+1))
 
             joint_trajectory_point.positions = thetas
             joint_trajectory_list.append(joint_trajectory_point)
 
+            loop_time = time.time()-loop_current_time
+            loop_times.append(loop_time)
+
+        print("Inverse kinematics calculation has been done!")
+        print("Total calculation time: {:>4f}".format(time.time() - loop_start_time))
+        print("Average calculation time: {:>4f}".format(np.mean(loop_times)))
+        print("-----------------------------------------")
+        print("theta1: {:>4f}".format(theta1 * r2d))
+        print("theta2: {:>4f}".format(theta2 * r2d))
+        print("theta3: {:>4f}".format(theta3 * r2d))
+        print("theta4: {:>4f}".format(theta4 * r2d))
+        print("theta5: {:>4f}".format(theta5 * r2d))
+        print("theta6: {:>4f}".format(theta6 * r2d))
         rospy.loginfo("length of Joint Trajectory List: %s" % len(joint_trajectory_list))
+        print("-----------------------------------------")
+        print("Moving robot arm...")
         return CalculateIKResponse(joint_trajectory_list)
 
 

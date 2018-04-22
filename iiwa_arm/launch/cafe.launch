@@ -7,7 +7,6 @@
   <!--Launch a gazebo world-->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find iiwa_arm)/worlds/cafe.world"/>
-    <!--<arg name="world_name" value="$(find iiwa_arm)/worlds/pen.world"/>-->
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="true"/>
