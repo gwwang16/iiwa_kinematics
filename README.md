@@ -1,15 +1,16 @@
 ## IIWA Kinematics
 
-Building
-
 Ubuntu 16.04 + ROS Kinetic
 
 Kinematics implementation for the KUKA LBR IIWA R820 (14 Kg).
 
+Video: https://youtu.be/L5daeWuy1js
+
 [//]: # "Image References"
 
 [fk]: ./imgs/forward_kinematics.jpg
-[ik]:./imgs/IK_results.jpg
+[results]:./imgs/IK_results.jpg
+
 
 ### Getting Started
 
@@ -76,24 +77,18 @@ To run your own Inverse Kinematics code change the demo flag described above to 
 $ cd ~/catkin_ws/src/RoboND-Kinematics-Project/kuka_arm/scripts
 $ rosrun kuka_arm IK_server.py
 ```
-![alt text][ik]
+![alt text][results]
 
-
-
-
-
+---
 References:
 
 Udacity kinematics project:
-
 https://github.com/udacity/RoboND-Kinematics-Project
 
 iiwa urdf and gazebo package:
-
 https://github.com/rtkg/lbr_iiwa
 
-iiwa kinematic parameters:
-
-http://www.inacomm2015.ammindia.org/img/94.pdf
+Computing Euler angles from a rottion matrix
+http://thomasbeatty.com/MATH%20PAGES/ARCHIVES%20-%20NOTES/Applied%20Math/euler%20angles.pdf
 
 
