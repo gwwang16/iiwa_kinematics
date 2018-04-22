@@ -67,15 +67,15 @@ $ roslaunch iiwa_arm forward_kinematics.launch
 ### Launch the project
 
 ```
-$ cd ~/catkin_ws/src/RoboND-Kinematics-Project/iiwa_arm/scripts
+$ cd ~/catkin_ws/src/iiwa_kinematics/iiwa_arm/scripts
 $ ./safe_spawner.sh
 ```
 
 To run your own Inverse Kinematics code change the demo flag described above to "false" and run your code (once the project has successfully loaded) by:
 
 ```
-$ cd ~/catkin_ws/src/RoboND-Kinematics-Project/kuka_arm/scripts
-$ rosrun kuka_arm IK_server.py
+$ cd ~/catkin_ws/src/iiwa_kinematics/iiwa_arm/scripts
+$ rosrun iiwa_arm IK_server.py
 ```
 ![alt text][results]
 
