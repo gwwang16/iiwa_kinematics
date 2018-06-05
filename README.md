@@ -3,11 +3,11 @@
 Ubuntu 16.04 + ROS Kinetic
 
 Kinematics implementation for the KUKA LBR IIWA R820 (14 Kg).
-
+![alt text][gif]
 Video: https://youtu.be/L5daeWuy1js
 
 [//]: # "Image References"
-
+[gif]: ./imgs/pick&amp;place.gif
 [fk]: ./imgs/forward_kinematics.jpg
 [results]:./imgs/IK_results.jpg
 
